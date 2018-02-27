@@ -1,0 +1,771 @@
+Last login: Mon Feb 26 14:03:51 on ttys001
+dhcp-v880-5aa-00134:~ sabrina$ ls
+Applications
+Creative Cloud Files
+Desktop
+Documents
+Downloads
+Dropbox
+Library
+Movies
+Music
+PaladinTemp
+Pictures
+Public
+SkyDrive
+anaconda3
+cnn-trump
+eclipse
+eclipse-workspace
+get-pip.py
+git
+learning-git
+pg-data-583
+project2
+scheung628@gmail.com Creative Cloud Files
+dhcp-v880-5aa-00134:~ sabrina$ cd Documents/class-12-django-intro/
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ ls
+Dockerfile		django-intro.pptx	mysite
+README.md		env			requirements.txt
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ rm -r $HOME/pg-data-583
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ mkdir $HOME/pg-data-583
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker
+
+Usage:	docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           "/Users/sabrina/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/Users/sabrina/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/Users/sabrina/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "/Users/sabrina/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  checkpoint  Manage checkpoints
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images (experimental)
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker images
+REPOSITORY             TAG                    IMAGE ID            CREATED             SIZE
+class-12               latest                 8d340a4644cb        6 days ago          438MB
+postgres               latest                 c12289de6f88        10 days ago         288MB
+<none>                 <none>                 1d695a2708c0        2 weeks ago         604MB
+<none>                 <none>                 03fca41a7218        2 weeks ago         602MB
+sabsc/583              class-09-scrapeclean   c7cd3045123f        2 weeks ago         602MB
+sabsc/583              class-08               a103f7bda33e        2 weeks ago         554MB
+steventking/data-viz   scrape-clean           237670318705        2 weeks ago         602MB
+steventking/data-viz   class-08               0a007fcaca09        3 weeks ago         554MB
+sabsc/583              class03-goheels        8683e6fee61c        3 weeks ago         603MB
+sabsc                  class03                9f717a02e2fb        4 weeks ago         602MB
+ubuntu                 16.04                  0458a4468cbc        4 weeks ago         112MB
+uncdataviz/class-03    start                  25aeab9dca12        4 weeks ago         601MB
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker rm c12289de6f88
+Error: No such container: c12289de6f88
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker rmi c12289de6f88
+Error response from daemon: conflict: unable to delete c12289de6f88 (must be forced) - image is being used by stopped container afb3d0ecda14
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+a349e136ccb1        class-12            "./env/bin/python3 m…"   22 hours ago        Up 22 hours         0.0.0.0:8000->8000/tcp   thirsty_goodall
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker kill a349e136ccb
+a349e136ccb
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker kill a349e136ccb1
+Error response from daemon: Cannot kill container: a349e136ccb1: Container a349e136ccb1c9c3453a7f916099e79459123e91e2eacad8d7459e5aeb0561e5 is not running
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker ps -a
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS                          PORTS                    NAMES
+a349e136ccb1        class-12                            "./env/bin/python3 m…"   22 hours ago        Exited (137) 26 seconds ago                              thirsty_goodall
+8e806fb2c39a        class-12                            "./env/bin/python3 m…"   22 hours ago        Exited (1) 22 hours ago                                  amazing_murdock
+9efef09ea020        class-12                            "./env/bin/python3 m…"   22 hours ago        Exited (2) 22 hours ago                                  elated_mclean
+24ae1251b89c        class-12                            "./env/bin/python3 m…"   22 hours ago        Exited (0) 22 hours ago                                  stoic_booth
+99c2893e63e0        class-12                            "./env/bin/python3 m…"   22 hours ago        Created                         0.0.0.0:8000->8000/tcp   reverent_kare
+ad95790b62ff        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (0) 23 hours ago                                  optimistic_goldwasser
+d232b0fef025        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (0) 23 hours ago                                  infallible_villani
+e4765f792679        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  brave_wescoff
+c962101e5c54        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  boring_ride
+315540fbcc5d        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  clever_curie
+035c78c95448        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  quirky_lewin
+41398b0256f8        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (0) 24 hours ago                                  romantic_lewin
+6b801662c3d1        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                  loving_montalcini
+eb754adeceea        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (1) 24 hours ago                                  laughing_turing
+5846900be74e        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                  determined_bose
+469d75f8dd2b        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  frosty_bell
+73a77030e9b1        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  determined_joliot
+da98728f959d        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  kind_leakey
+639d5e8fed07        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                  reverent_raman
+3a5d18b999d6        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  priceless_pasteur
+9a3cf911b506        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  romantic_davinci
+641116eb7452        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (0) 24 hours ago                                  quizzical_saha
+2fbc66ae3ffe        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                  nostalgic_curran
+f80a42dea943        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                  cranky_neumann
+293483a84ccf        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                  sad_mirzakhani
+99f2d8bae3d9        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                  stupefied_bell
+08043ce0a11e        class-12                            "python3 -m venv env"    24 hours ago        Exited (0) 24 hours ago                                  gifted_tereshkova
+fd3138d9971d        class-12                            "./env/bin/python3 m…"   24 hours ago        Created                         0.0.0.0:8000->8000/tcp   dreamy_goodall
+afb3d0ecda14        postgres                            "docker-entrypoint.s…"   24 hours ago        Exited (0) About a minute ago                            class-12-pg
+91a10f810ad9        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                  frosty_curie
+d2343fe5496c        class-12                            "./env/bin/python3 m…"   38 hours ago        Created                         0.0.0.0:8000->8000/tcp   gifted_brattain
+81afd2bc4580        class-12                            "./env/bin/python3 m…"   38 hours ago        Exited (0) 38 hours ago                                  nifty_wing
+4b25a627575c        class-12                            "./env/bin/pip3 inst…"   38 hours ago        Exited (0) 38 hours ago                                  modest_kilby
+829dbc0d93ed        class-12                            "./env/bin/pip3 inst…"   38 hours ago        Created                                                  friendly_liskov
+85fe615c5683        class-12                            "./env/bin/python3 m…"   38 hours ago        Created                         0.0.0.0:8000->8000/tcp   practical_euclid
+cfd524a73ae9        class-12                            "./env/bin/python3 m…"   38 hours ago        Exited (0) 38 hours ago                                  amazing_snyder
+4ebb6b6e8f07        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   sharp_fermi
+34b540318944        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   confident_nobel
+2a58a44094d7        class-12                            "/bin/bash"              39 hours ago        Exited (0) 39 hours ago                                  compassionate_visvesvaraya
+359c6319641a        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   quizzical_einstein
+1d50171e1fd4        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   priceless_curie
+b8cd6ace7d34        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   infallible_panini
+32d32314efb2        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                         0.0.0.0:8000->8000/tcp   heuristic_bardeen
+cc8c15a24fb9        class-12                            "./env/bin/python3 m…"   39 hours ago        Exited (0) 39 hours ago                                  hungry_benz
+a7471945dd99        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    amazing_mclean
+6870cd07b168        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    ecstatic_benz
+5068721d6188        class-12                            "./env/bin/pip3 inst…"   6 days ago          Exited (0) 6 days ago                                    adoring_villani
+3985b20c35a8        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    practical_hawking
+79d9284995ca        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    boring_ritchie
+e78c598fa12f        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    pedantic_poitras
+0857c32e4474        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    sad_bhaskara
+f15a2eb6606a        class-12                            "./env/bin/python3 m…"   6 days ago          Created                         0.0.0.0:8000->8000/tcp   upbeat_bartik
+c955f866e037        class-12                            "./env/bin/python3 m…"   6 days ago          Created                         0.0.0.0:8000->8000/tcp   competent_poincare
+a4c0de9953cc        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                    laughing_haibt
+c4fcbe33181e        class-12                            "./env/bin/django-ad…"   6 days ago          Exited (0) 6 days ago                                    zealous_poitras
+0ded6378c1ec        class-12                            "./env/bin/pip3 inst…"   6 days ago          Exited (0) 6 days ago                                    elegant_kalam
+678c4c61599f        class-12                            "python3 -m venv env"    6 days ago          Exited (0) 6 days ago                                    modest_shannon
+b6e8f4bb8a4f        237670318705                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 priceless_ramanujan
+ac7c54bdf81e        237670318705                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 hardcore_snyder
+fe3d8d91c57d        8683e6fee61c                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 serene_bell
+4ea0d9d0e895        a103f7bda33e                        "/usr/bin/jupyter-no…"   2 weeks ago         Exited (137) 2 weeks ago                                 affectionate_dijkstra
+db2e1e949935        c7cd3045123f                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 happy_mahavira
+8919bee4a6bd        sabsc/583:class-09-scrapeclean      "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 goofy_swirles
+4bd7566b2ddd        steventking/data-viz:scrape-clean   "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                                 gifted_kalam
+cf802cffe028        steventking/data-viz:class-08       "/usr/bin/jupyter-no…"   3 weeks ago         Exited (137) 2 weeks ago                                 gifted_wing
+82d0457c5c0a        8683e6fee61c                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                                 gracious_hugle
+ebb455095d6c        ba357b97870e                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                                 dreamy_carson
+ac9cce918036        ba357b97870e                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                                 keen_blackwell
+ff8b67888198        9f717a02e2fb                        "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                                 angry_turing
+fcf66031a430        859535de4027                        "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (255) 4 weeks ago        0.0.0.0:9000->9000/tcp   heuristic_liskov
+3a1f13d47991        uncdataviz/class-03:start           "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                                 angry_franklin
+933417311f6a        uncdataviz/class-03:start           "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                                 sleepy_einstein
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $HOME/pg-data-583:/var/lib/postgresql/data/pg-data-583 \
+> --env PGDATA=/var/lib/postgresql/data/pg-data-583 \
+> --name class-12-pg \
+> -p 5432:5432 \
+> -d postgres
+docker: Error response from daemon: Conflict. The container name "/class-12-pg" is already in use by container "afb3d0ecda1471ae61da5512151e92c9c6052531cc3e252f0aa0f4a4e26bbc6b". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker rm afb3d0ecda1471ae61da5512151e92c9c6052531cc3e252f0aa0f4a4e26bbc6b
+afb3d0ecda1471ae61da5512151e92c9c6052531cc3e252f0aa0f4a4e26bbc6b
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $HOME/pg-data-583:/var/lib/postgresql/data/pg-data-583 --env PGDATA=/var/lib/postgresql/data/pg-data-583 --name class-12-pg -p 5432:5432 -d postgres
+5a33b13815db441bd16e8c03f7eabd3b2f871f4f481261421bb3f949ca0bada9
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 8000:8000 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f18bf044d08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc" does not exist
+
+^C^Xdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 80000 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7fa62830ec80>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc" does not exist
+
+^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 8000:80 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7fa4a0d1ec80>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+^X^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 80000 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f582eeaed08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 8000:80 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f8eb37acd08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ ls
+Dockerfile		django-intro.pptx	mysite
+README.md		env			requirements.txt
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 8000:8000 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f5f78f99d08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f08504c3d08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker run -v $PWD:/opt/project -p 8000:80 --link class-12-pg:postgres -it class-12 ./env/bin/python3 mysite/manage.py runserver 0.0.0.0:8000
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+Performing system checks...
+
+System check identified no issues (0 silenced).
+Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7ffb484b6d08>
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: FATAL:  role "unc2" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/project/env/lib/python3.5/site-packages/django/utils/autoreload.py", line 225, in wrapper
+    fn(*args, **kwargs)
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/commands/runserver.py", line 123, in inner_run
+    self.check_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/core/management/base.py", line 427, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.applied_migrations = recorder.applied_migrations()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 61, in applied_migrations
+    if self.has_table():
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/migrations/recorder.py", line 44, in has_table
+    return self.Migration._meta.db_table in self.connection.introspection.table_names(self.connection.cursor())
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 255, in cursor
+    return self._cursor()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 232, in _cursor
+    self.ensure_connection()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 216, in ensure_connection
+    self.connect()
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/base/base.py", line 194, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/django/db/backends/postgresql/base.py", line 168, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "/opt/project/env/lib/python3.5/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: FATAL:  role "unc2" does not exist
+
+^Cdhcp-v880-5aa-00134:class-12-django-intro sabrina$ docker ps -a
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS                        PORTS                    NAMES
+1d7dc2317a7a        class-12                            "./env/bin/python3 m…"   2 minutes ago       Exited (0) 4 seconds ago                               musing_goldberg
+37979d7235b6        class-12                            "./env/bin/python3 m…"   25 minutes ago      Exited (0) 2 minutes ago                               brave_mahavira
+24948b476f6c        class-12                            "./env/bin/python3 m…"   28 minutes ago      Exited (0) 27 minutes ago                              pensive_bose
+309baf727732        class-12                            "./env/bin/python3 m…"   30 minutes ago      Exited (0) 28 minutes ago                              quizzical_bassi
+f8b687582ae1        class-12                            "./env/bin/python3 m…"   31 minutes ago      Exited (0) 30 minutes ago                              silly_johnson
+1f407b83d57d        class-12                            "./env/bin/python3 m…"   32 minutes ago      Exited (0) 32 minutes ago                              jovial_cori
+482ffe4a1028        class-12                            "./env/bin/python3 m…"   34 minutes ago      Exited (0) 32 minutes ago                              quirky_edison
+5a33b13815db        postgres                            "docker-entrypoint.s…"   35 minutes ago      Up 35 minutes                 0.0.0.0:5432->5432/tcp   class-12-pg
+a349e136ccb1        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (137) 36 minutes ago                            thirsty_goodall
+8e806fb2c39a        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (1) 23 hours ago                                amazing_murdock
+9efef09ea020        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (2) 23 hours ago                                elated_mclean
+24ae1251b89c        class-12                            "./env/bin/python3 m…"   23 hours ago        Exited (0) 23 hours ago                                stoic_booth
+99c2893e63e0        class-12                            "./env/bin/python3 m…"   23 hours ago        Created                       0.0.0.0:8000->8000/tcp   reverent_kare
+ad95790b62ff        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                optimistic_goldwasser
+d232b0fef025        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                infallible_villani
+e4765f792679        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                brave_wescoff
+c962101e5c54        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                boring_ride
+315540fbcc5d        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                clever_curie
+035c78c95448        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                quirky_lewin
+41398b0256f8        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (0) 24 hours ago                                romantic_lewin
+6b801662c3d1        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                loving_montalcini
+eb754adeceea        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (1) 24 hours ago                                laughing_turing
+5846900be74e        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                determined_bose
+469d75f8dd2b        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                frosty_bell
+73a77030e9b1        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                determined_joliot
+da98728f959d        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                kind_leakey
+639d5e8fed07        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                reverent_raman
+3a5d18b999d6        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                priceless_pasteur
+9a3cf911b506        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (0) 24 hours ago                                romantic_davinci
+641116eb7452        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (0) 24 hours ago                                quizzical_saha
+2fbc66ae3ffe        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                nostalgic_curran
+f80a42dea943        class-12                            "./env/bin/pip3 inst…"   24 hours ago        Exited (1) 24 hours ago                                cranky_neumann
+293483a84ccf        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                sad_mirzakhani
+99f2d8bae3d9        class-12                            "./env/bin/python3 m…"   24 hours ago        Exited (2) 24 hours ago                                stupefied_bell
+08043ce0a11e        class-12                            "python3 -m venv env"    25 hours ago        Exited (0) 24 hours ago                                gifted_tereshkova
+fd3138d9971d        class-12                            "./env/bin/python3 m…"   25 hours ago        Created                       0.0.0.0:8000->8000/tcp   dreamy_goodall
+91a10f810ad9        class-12                            "./env/bin/python3 m…"   25 hours ago        Exited (0) 25 hours ago                                frosty_curie
+d2343fe5496c        class-12                            "./env/bin/python3 m…"   38 hours ago        Created                       0.0.0.0:8000->8000/tcp   gifted_brattain
+81afd2bc4580        class-12                            "./env/bin/python3 m…"   38 hours ago        Exited (0) 38 hours ago                                nifty_wing
+4b25a627575c        class-12                            "./env/bin/pip3 inst…"   38 hours ago        Exited (0) 38 hours ago                                modest_kilby
+829dbc0d93ed        class-12                            "./env/bin/pip3 inst…"   38 hours ago        Created                                                friendly_liskov
+85fe615c5683        class-12                            "./env/bin/python3 m…"   38 hours ago        Created                       0.0.0.0:8000->8000/tcp   practical_euclid
+cfd524a73ae9        class-12                            "./env/bin/python3 m…"   39 hours ago        Exited (0) 39 hours ago                                amazing_snyder
+4ebb6b6e8f07        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   sharp_fermi
+34b540318944        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   confident_nobel
+2a58a44094d7        class-12                            "/bin/bash"              39 hours ago        Exited (0) 39 hours ago                                compassionate_visvesvaraya
+359c6319641a        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   quizzical_einstein
+1d50171e1fd4        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   priceless_curie
+b8cd6ace7d34        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   infallible_panini
+32d32314efb2        class-12                            "./env/bin/python3 m…"   39 hours ago        Created                       0.0.0.0:8000->8000/tcp   heuristic_bardeen
+cc8c15a24fb9        class-12                            "./env/bin/python3 m…"   39 hours ago        Exited (0) 39 hours ago                                hungry_benz
+a7471945dd99        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  amazing_mclean
+6870cd07b168        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  ecstatic_benz
+5068721d6188        class-12                            "./env/bin/pip3 inst…"   6 days ago          Exited (0) 6 days ago                                  adoring_villani
+3985b20c35a8        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  practical_hawking
+79d9284995ca        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  boring_ritchie
+e78c598fa12f        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  pedantic_poitras
+0857c32e4474        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  sad_bhaskara
+f15a2eb6606a        class-12                            "./env/bin/python3 m…"   6 days ago          Created                       0.0.0.0:8000->8000/tcp   upbeat_bartik
+c955f866e037        class-12                            "./env/bin/python3 m…"   6 days ago          Created                       0.0.0.0:8000->8000/tcp   competent_poincare
+a4c0de9953cc        class-12                            "./env/bin/python3 m…"   6 days ago          Exited (0) 6 days ago                                  laughing_haibt
+c4fcbe33181e        class-12                            "./env/bin/django-ad…"   6 days ago          Exited (0) 6 days ago                                  zealous_poitras
+0ded6378c1ec        class-12                            "./env/bin/pip3 inst…"   6 days ago          Exited (0) 6 days ago                                  elegant_kalam
+678c4c61599f        class-12                            "python3 -m venv env"    6 days ago          Exited (0) 6 days ago                                  modest_shannon
+b6e8f4bb8a4f        237670318705                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               priceless_ramanujan
+ac7c54bdf81e        237670318705                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               hardcore_snyder
+fe3d8d91c57d        8683e6fee61c                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               serene_bell
+4ea0d9d0e895        a103f7bda33e                        "/usr/bin/jupyter-no…"   2 weeks ago         Exited (137) 2 weeks ago                               affectionate_dijkstra
+db2e1e949935        c7cd3045123f                        "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               happy_mahavira
+8919bee4a6bd        sabsc/583:class-09-scrapeclean      "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               goofy_swirles
+4bd7566b2ddd        steventking/data-viz:scrape-clean   "/bin/sh -c '/usr/bi…"   2 weeks ago         Exited (137) 2 weeks ago                               gifted_kalam
+cf802cffe028        steventking/data-viz:class-08       "/usr/bin/jupyter-no…"   3 weeks ago         Exited (137) 2 weeks ago                               gifted_wing
+82d0457c5c0a        8683e6fee61c                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                               gracious_hugle
+ebb455095d6c        ba357b97870e                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                               dreamy_carson
+ac9cce918036        ba357b97870e                        "/bin/sh -c '/usr/bi…"   3 weeks ago         Exited (137) 3 weeks ago                               keen_blackwell
+ff8b67888198        9f717a02e2fb                        "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                               angry_turing
+fcf66031a430        859535de4027                        "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (255) 4 weeks ago      0.0.0.0:9000->9000/tcp   heuristic_liskov
+3a1f13d47991        uncdataviz/class-03:start           "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                               angry_franklin
+933417311f6a        uncdataviz/class-03:start           "/bin/sh -c '/usr/bi…"   4 weeks ago         Exited (137) 4 weeks ago                               sleepy_einstein
+dhcp-v880-5aa-00134:class-12-django-intro sabrina$ 
